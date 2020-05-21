@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style type="text/css">
-        .todo-done {
+        .done {
             text-decoration: line-through;
         }
     </style>
@@ -15,23 +15,23 @@
 <body>
 <ul>
     <li>Todo 1 <button>done</button></li>
-    <li class="todo-done">Todo 2 <button>done</button></li>
+    <li>Todo 2 <button>done</button></li>
     <li>Todo 3 <button>done</button></li>
 </ul>
 <script>
-    [...document.querySelectorAll('button')].forEach(button => {
+    const buttonList = document.querySelectorAll('button');
+    [...buttonList].forEach((button) => {
       button.addEventListener('click', () => {
-        console.log(button);
-        button.closest('li').classList.add('todo-done');
+        const li = button.closest('li');
+        li.classList.add('done');
       });
     });
-    // document.querySelector('button')
-    //   .addEventListener('click', event => {
-    //     console.log('done');
-    //     document.querySelector('li').classList.add('todo-done');
-    //      or
-    //     event.target.closest('li').classList.add('todo-done');
-    //   });
+
+    // こちらは最初の1個のもの
+    // const li = document.querySelector('li');
+    // button.addEventListener('click', () => {
+    //   li.classList.add('done');
+    // });
 </script>
 </body>
 </html>
