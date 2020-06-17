@@ -10,9 +10,9 @@
 Docker を起動した後、下記コマンドをターミナルで実行すると PHP サーバが起動します。終了させるには Control + c キーを押します。
 
 ```
-$ docker run --rm --tty --detach \
-    --publish 8000:8000 \
-    --name muzaru-php \
-    --volume (pwd):/myapp \
-    muzaru/php bash
+$ docker run --rm \
+         --publish 8000:8000 \
+         --volume (pwd):/myapp \
+         muzaru/php \
+         php -t /myapp -S 0.0.0.0:8000
 ```
