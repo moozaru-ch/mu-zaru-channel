@@ -1,7 +1,11 @@
 # PHP で作る はじめての Web サイト
 
-## テーブルの作成
+## PHP サーバ起動
 
 ```
-$ docker exec muzaru-php sh -c "sqlite3 sample.db < create.sql"
+$ docker run --rm \
+--publish 8000:8000 \
+--name muzaru-php \
+--volume (pwd):/myapp \
+muzaru/php php -t /myapp -S 0.0.0.0:8000
 ```
