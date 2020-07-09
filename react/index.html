@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            max-width: 640px;
+        }
+        button {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+        .like {
+            border: 1px solid #256ae8;
+            color: #256ae8;
+            background: #fff;
+        }
+        .liked {
+            border: 1px solid #256ae8;
+            color: #fff;
+            background: #256ae8;
+        }
+    </style>
+</head>
+<body>
+<div id="like_button_container"></div>
+<script src="./react.development.js" crossorigin></script>
+<script src="./react-dom.development.js" crossorigin></script>
+<script src="./babel.min.js"></script>
+<script type="text/babel">
+  function LikeButton(props) {
+    const [liked, setLiked] = React.useState(false);
+    const className = liked ? 'liked' : 'like';
+    const clicked = () => {
+      const currentLiked = !liked;
+      const change = currentLiked ? 1 : -1;
+      props.onClick((likedCount) => likedCount + change)
+      setLiked(currentLiked);
+    };
+    return <button className={className} onClick={() => clicked()}>like</button>;
+  }
+  function LikeSummaryText(props) {
+    return <p>Total like: {props.likedCount}</p>;
+  }
+  function LikeButtonComponent() {
+    const [likedCount, setLikedCount] = React.useState(999);
+    return (
+      <div>
+        <LikeButton onClick={setLikedCount} />
+        <LikeSummaryText likedCount={likedCount} />
+      </div>
+    )
+  }
+</script>
+</body>
+</html>
